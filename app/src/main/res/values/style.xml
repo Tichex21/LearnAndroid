@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextOnPrimaryRegular">
+        <item name="android:textColor">@color/colorOnPrimary</item>
+        <item name="android:fontFamily">@font/noto_serif_regular</item>
+    </style>
+
+    <style name="TextOnPrimaryBold">
+        <item name="android:textColor">@color/colorOnPrimary</item>
+        <item name="android:fontFamily">@font/noto_serif_bold</item>
+    </style>
+
+    <style name="TextOnPrimaryMedium">
+        <item name="android:textColor">@color/colorOnPrimary</item>
+        <item name="android:fontFamily">@font/noto_serif_medium</item>
+    </style>
+
+</resources>

@@ -1,0 +1,27 @@
+[
+  {
+    "quote": "The only way to do great work is to love what you do.",
+    "author": "Steve Jobs",
+    "image":  "https://picsum.photos/id/186/2048/1275"
+  },
+  {
+    "quote": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "author": "Winston Churchill",
+    "image": "https://picsum.photos/id/201/5000/3333"
+  },
+  {
+    "quote": "Believe you can and you're halfway there.",
+    "author": "Theodore Roosevelt",
+    "image": "https://picsum.photos/id/2/5000/3333"
+  },
+  {
+    "quote": "Do what you can, with what you have, where you are.",
+    "author": "Theodore Roosevelt",
+    "image": "https://picsum.photos/id/3/5000/3333"
+  },
+  {
+    "quote": "Your time is limited, so don’t waste it living someone else’s life.",
+    "author": "Steve Jobs",
+    "image": "https://picsum.photos/id/4/5000/3333"
+  }
+]

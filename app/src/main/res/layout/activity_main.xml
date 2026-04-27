@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="quoteModel"
+            type="com.demo.myapplication.model.QuoteModel" />
+
+        <variable
+            name="pathOrUrl"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        tools:context=".MainActivity">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBackgroundImage"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:alpha="0.5"
+            android:layout_height="match_parent"
+           />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_app_name"
+            style="@style/TextOnPrimaryBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:text="@string/app_name"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20dp"
+            app:cardCornerRadius="@dimen/_15dp"
+            app:cardElevation="@dimen/_5dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_previous"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_name"
+            app:strokeColor="@color/colorOnPrimary">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_15dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_app_logo_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorPrimary" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_quote"
+                    style="@style/TextOnPrimaryRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_serif_medium"
+                    android:text="@{quoteModel.quote}"
+                    android:textColor="@color/colorOnSecondary"
+                    app:layout_constraintTop_toBottomOf="@id/iv_logo"
+                    tools:text="This is a quote This is a quoteThis is a quoteThis is a quoteThis is a quoteThis is a quoteThis is a quoteThis is a quoteThis is a quoteThis is a quote" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15dp"
+                    android:fontFamily="@font/noto_serif_regular"
+                    android:gravity="end"
+                    android:text="@{quoteModel.author}"
+                    android:textColor="@color/colorOnSecondary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_quote"
+                    tools:text="Author" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_previous"
+            style="@style/TextOnPrimaryMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_20dp"
+            android:text="@string/previous"
+            android:textAllCaps="true"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_next"
+            style="@style/TextOnPrimaryMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_20dp"
+            android:text="@string/next"
+            android:textAllCaps="true"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
