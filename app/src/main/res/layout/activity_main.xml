@@ -7,7 +7,7 @@
 
         <variable
             name="quoteModel"
-            type="com.demo.myapplication.model.QuoteModel" />
+            type="com.sachinshah.practical.model.QuoteModel" />
 
         <variable
             name="pathOrUrl"

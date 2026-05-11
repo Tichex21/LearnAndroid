@@ -1,0 +1,54 @@
+{
+  "quotes": [
+    {
+      "id": 1,
+      "title": "Clean Code",
+      "quote": "Code is like humor. When you have to explain it, it’s bad."
+    },
+    {
+      "id": 2,
+      "title": "Problem Solving",
+      "quote": "First solve the problem, then write the code."
+    },
+    {
+      "id": 3,
+      "title": "Readability",
+      "quote": "Programs must be written for people to read."
+    },
+    {
+      "id": 4,
+      "title": "Simplicity",
+      "quote": "Simplicity is the soul of efficiency."
+    },
+    {
+      "id": 5,
+      "title": "Debugging",
+      "quote": "Fix the cause, not the symptom."
+    },
+    {
+      "id": 6,
+      "title": "Learning",
+      "quote": "Experience is the name everyone gives to their mistakes."
+    },
+    {
+      "id": 7,
+      "title": "Optimization",
+      "quote": "Make it work, make it right, make it fast."
+    },
+    {
+      "id": 8,
+      "title": "Craftsmanship",
+      "quote": "Clean code always looks like it was written by someone who cares."
+    },
+    {
+      "id": 9,
+      "title": "Programming Wisdom",
+      "quote": "Any fool can write code that a computer understands."
+    },
+    {
+      "id": 10,
+      "title": "Usability",
+      "quote": "Before software can be reusable it first has to be usable."
+    }
+  ]
+}
