@@ -3,7 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
-    alias (libs.plugins.ksp)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 android {
     namespace = "com.sachinshah.practical"
@@ -23,12 +24,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -43,11 +44,16 @@ android {
         viewBinding = true
         dataBinding = true
     }
-    packaging {        resources {
-        // Exclude the duplicate incremental annotation processor file
-        excludes += "/META-INF/gradle/incremental.annotation.processors"
+    packaging {
+        resources {
+            // Exclude the duplicate incremental annotation processor file
+            excludes += "/META-INF/gradle/incremental.annotation.processors"
+        }
     }
-    }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 dependencies {
@@ -61,20 +67,32 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activityKtx)
+
     implementation(libs.androidx.constraintlayout)
+
     implementation(libs.androidx.core.splashscreen)
+
     implementation(libs.google.gson)
+
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.loggingInterceptor)
+
     implementation(libs.corotuine)
     implementation(libs.coroutineCore)
+
     implementation(libs.coil)
     implementation(libs.coil.okhttp)
+
     implementation(libs.hilt)
     ksp(libs.hiltCompiler)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

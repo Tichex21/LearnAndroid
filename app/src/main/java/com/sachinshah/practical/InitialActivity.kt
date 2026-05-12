@@ -38,6 +38,6 @@ class InitialActivity : AppCompatActivity() {
     }
 
     fun openHomeActivity(){
-        startActivity(Intent(this, ListActivity::class.java))
+        startActivity(Intent(this, DatabaseCrudActivity::class.java))
     }
 }

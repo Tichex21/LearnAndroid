@@ -3,4 +3,5 @@
     <string name="moments_of_reflection">Moments of Reflection</string>
     <string name="previous"><![CDATA[<]]> Previous</string>
     <string name="next">Next <![CDATA[>]]></string>
+    <string name="add">Add</string>
 </resources>
