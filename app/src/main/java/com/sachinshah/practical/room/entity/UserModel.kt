@@ -11,7 +11,7 @@ import kotlinx.parcelize.Parcelize
 data class UserModel(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo("user_id") var uid: Int=0,
-    @ColumnInfo(name = "first_name") val firstName: String?,
-    @ColumnInfo(name = "last_name") val lastName: String?
+    @ColumnInfo(name = "first_name") val firstName: String?="",
+    @ColumnInfo(name = "last_name") val lastName: String?=""
 
 ) : Parcelable

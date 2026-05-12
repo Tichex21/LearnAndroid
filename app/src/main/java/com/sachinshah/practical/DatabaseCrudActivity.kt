@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -18,13 +19,23 @@ import com.sachinshah.practical.adapter.QuotesAdapter2
 import com.sachinshah.practical.databinding.ActivityDatabaseCrudBinding
 import com.sachinshah.practical.databinding.ActivityListBinding
 import com.sachinshah.practical.model.ResultModel
+import com.sachinshah.practical.prefdatastore.PrefDatastoreUtils
 import com.sachinshah.practical.room.entity.UserModel
 import com.sachinshah.practical.viewmodels.DbCrudViewModel
 import com.sachinshah.practical.viewmodels.QuotesListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DatabaseCrudActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var prefDatastoreUtils: PrefDatastoreUtils
 
     lateinit var mBinding: ActivityDatabaseCrudBinding
 
@@ -32,7 +43,7 @@ class DatabaseCrudActivity : AppCompatActivity() {
     lateinit var dbUserAdapter: DbUserAdapter
 
     var isUpdate: Boolean = false
-    var userModel : UserModel?=null
+    var userModel: UserModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -45,8 +56,8 @@ class DatabaseCrudActivity : AppCompatActivity() {
         dbUserAdapter = DbUserAdapter(
             update = { userModel, i ->
                 isUpdate = true
-                this.userModel=userModel
-                mBinding.btnAdd.text="Update"
+                this.userModel = userModel
+                mBinding.btnAdd.text = "Update"
                 mBinding.edUserName.setText(userModel.firstName)
             },
             delete = { userModel, i ->
@@ -63,14 +74,14 @@ class DatabaseCrudActivity : AppCompatActivity() {
         mBinding.btnAdd.setOnClickListener {
             if (isUpdate) {
 
-                userModel?.copy(firstName =   mBinding.edUserName.text.toString())?.let { it1 ->
+                userModel?.copy(firstName = mBinding.edUserName.text.toString())?.let { it1 ->
                     dbCrudViewModel.updateUser(
                         it1
                     )
                 }
-                isUpdate=false
+                isUpdate = false
                 mBinding.edUserName.setText("")
-                mBinding.btnAdd.text="Add"
+                mBinding.btnAdd.text = "Add"
             } else {
                 dbCrudViewModel.addUser(
                     UserModel(
@@ -79,6 +90,37 @@ class DatabaseCrudActivity : AppCompatActivity() {
                     )
                 )
             }
+        }
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val user = async { prefDatastoreUtils.user().first() }.await()
+            Handler(mainLooper).postDelayed(
+                {
+                    Toast.makeText(
+                        this@DatabaseCrudActivity,
+                        user.firstName,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }, 100
+            )
+
+        }
+
+        mBinding.btnLogout.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val isLogout = async {
+                    prefDatastoreUtils.logout(
+                        logout = {
+                            if (it) {
+                                finish()
+                            }
+                        }
+                    )
+                }
+            }
+
         }
     }
 
