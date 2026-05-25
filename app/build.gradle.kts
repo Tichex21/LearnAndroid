@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.hilt.ksp)
     alias(libs.plugins.room)
 }
+
 android {
     namespace = "com.sachinshah.practical"
     compileSdk {
@@ -24,31 +26,31 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
+    }
+
+    buildFeatures {
+        compose = true
+        buildConfig =true
+        dataBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-
-    buildFeatures {
-        compose = true
-        viewBinding = true
-        dataBinding = true
-    }
     packaging {
         resources {
-            // Exclude the duplicate incremental annotation processor file
-            excludes += "/META-INF/gradle/incremental.annotation.processors"
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+        resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
     }
 }
 
@@ -65,37 +67,31 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.activityKtx)
-
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.constraintlayout)
-
-    implementation(libs.androidx.core.splashscreen)
-
-    implementation(libs.google.gson)
-
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
-    implementation(libs.loggingInterceptor)
-
-    implementation(libs.corotuine)
-    implementation(libs.coroutineCore)
-
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.xml.material3)
+    implementation(libs.androidx.compose.material3.window.sizeClass)
     implementation(libs.coil)
     implementation(libs.coil.okhttp)
-
-    implementation(libs.hilt)
-    ksp(libs.hiltCompiler)
-
+    implementation(libs.media3.exoplayer)
+    implementation(libs.media3.ui)
+    implementation(libs.squareup.retrofit)
+    implementation(libs.gson)
+    implementation(libs.gsonConvertor)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.http.interceptor)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
-
-    implementation(libs.androidx.datastore)
-
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.splash.screen)
+    ksp(libs.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -5,4 +5,5 @@
     <string name="next">Next <![CDATA[>]]></string>
     <string name="add">Add</string>
     <string name="logout">Logout</string>
+    <string name="title_activity_main_compose">MainComposeActivity</string>
 </resources>

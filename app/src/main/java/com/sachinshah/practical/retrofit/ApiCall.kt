@@ -3,6 +3,7 @@ package com.sachinshah.practical.retrofit
 import com.sachinshah.practical.model.LoginRequest
 import com.sachinshah.practical.model.QuoteData
 import com.google.gson.JsonObject
+import com.sachinshah.practical.model.ProductModel
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -21,7 +22,11 @@ interface ApiCall {
         @Body request   : LoginRequest
     ): Response<JsonObject>
 
+    @GET("/products")
+    suspend fun getProducts() : Response<ArrayList<ProductModel>>
 
+    @GET("/products/{id}")
+    suspend fun getProductById(id: Int) : Response<ProductModel>
     /* @POST(EndPoint.COMMON_LOGIN)
      @FormUrlEncoded
      suspend fun commonLogin(
