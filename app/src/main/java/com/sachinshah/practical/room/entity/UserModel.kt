@@ -15,3 +15,16 @@ data class UserModel(
     @ColumnInfo(name = "last_name") val lastName: String?=""
 
 ) : Parcelable
+
+
+@Entity(tableName = "Messages")
+@Parcelize
+data class MsgModel(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo("user_id")
+    var id: Int=0
+
+
+
+
+): Parcelable

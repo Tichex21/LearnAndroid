@@ -11,6 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHost
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.sachinshah.practical.ui.screens.MVIScreen
+import com.sachinshah.practical.ui.screens.MVIScreen2
 import com.sachinshah.practical.ui.screens.NavHostComposable
 import com.sachinshah.practical.ui.screens.ProductListScreen
 import com.sachinshah.practical.ui.theme.SachinShahTheme
@@ -23,10 +29,11 @@ class MainComposeActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SachinShahTheme {
-                NavHostComposable()
+               // NavHostComposable()
+                MyNavHost()
 
-               /* Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                }*/
+                /* Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                 }*/
             }
         }
     }
@@ -46,4 +53,35 @@ fun GreetingPreview() {
     SachinShahTheme {
         Greeting("Android")
     }
+}
+
+@Composable
+fun MyNavHost() {
+
+    val navController = rememberNavController()
+
+    NavHost(
+        navController, startDestination = "MVIScreen"
+    ) {
+
+        composable(route = "MVIScreen") {
+            navController.currentBackStackEntry?.savedStateHandle?.set(
+                "fe", "re"
+            )
+            MVIScreen() {
+                navController.navigate("MVIScreen2")
+            }
+        }
+        composable(route = "MVIScreen2") {
+            val string = navController.currentBackStackEntry?.savedStateHandle?.get<String>(
+                "fe"
+            )
+            MVIScreen2(string ?: "", {
+                navController.popBackStack()
+            })
+        }
+
+    }
+
+
 }

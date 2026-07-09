@@ -7,6 +7,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.sachinshah.practical.room.entity.UserModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao : BaseDao<UserModel> {
@@ -19,4 +20,18 @@ interface UserDao : BaseDao<UserModel> {
 
     @Query("SELECT * FROM user where user_id =:id")
     suspend fun getSingleUser(id: Int): UserModel
+
+
+    @Query("SELECT * from user")
+    fun getAll() : Flow<List<UserModel>>
 }
+
+
+
+@Dao
+interface bewwe{
+
+
+
+}
+

@@ -13,6 +13,8 @@ import com.google.gson.JsonObject
 import com.sachinshah.practical.repository.DbCrudRepository
 import com.sachinshah.practical.room.entity.UserModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,6 +28,8 @@ class DbCrudViewModel @Inject constructor(
 
     val getAllUserLiveData:LiveData<List<UserModel>>  get() = dbCrudRepository.getAllUserLive()
 
+    private val _userListFlow = MutableStateFlow(UserModel())
+    private val userFlow=_userListFlow.asStateFlow()
 
     fun getAllUser() {
         viewModelScope.launch {
@@ -40,6 +44,16 @@ class DbCrudViewModel @Inject constructor(
             }
         }
 
+    }
+
+
+    fun getAll(){
+        viewModelScope.launch {
+            dbCrudRepository.getAll().collect {
+                users->
+
+            }
+        }
     }
 
 

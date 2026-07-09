@@ -3,7 +3,9 @@ package com.sachinshah.practical
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.red
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
@@ -44,6 +46,38 @@ class MainActivity : AppCompatActivity() {
             quotesViewModel.previousQuote()
         }
 
+
+       val name: String="Sachin"
+        val letngrth= name.let {
+            print(it)
+            it.length
+        }
+
+
+        val student = Student().run {
+            this.name="Sachin"
+            this.age=50
+            "${this.name} **  ${this.age}"
+
+        }
+        print(student)
+
+        val studere= Student().apply {
+            this.name="rew"
+            this.age=24
+        }
+
+        val srte= Student().also {
+            Log.e("rewrw","rew {$it}")
+        }
+
+        with(srte){
+          this.name="re"
+            this.age=50
+
+        }
+
     }
+    data class Student(var name: String="rwe",var age: Int=50){}
 
 }

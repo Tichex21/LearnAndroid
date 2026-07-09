@@ -32,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.sachinshah.practical.model.ProductModel
 import com.sachinshah.practical.ui.theme.ColorBlack
@@ -50,7 +51,7 @@ fun ProductListScreen(onItemClick: (productModel: ProductModel) -> Unit) {
         return
     }
     val productViewModel: ProductViewModel   = hiltViewModel()
-    val products = productViewModel.products.collectAsState()
+    val products = productViewModel.products.collectAsStateWithLifecycle()
 
     if(products.value.isEmpty()){
 

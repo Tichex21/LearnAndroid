@@ -10,6 +10,7 @@ import com.sachinshah.practical.MyApplication
 import com.sachinshah.practical.room.dao.UserDao
 import com.sachinshah.practical.room.database.AppDatabase
 import com.sachinshah.practical.room.entity.UserModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DbCrudRepository @Inject constructor(roomDatabase: AppDatabase) : BaseRepository() {
@@ -33,6 +34,9 @@ class DbCrudRepository @Inject constructor(roomDatabase: AppDatabase) : BaseRepo
         return userDao.getAllUserLive()
     }
 
+    fun getAll() : Flow<List<UserModel>>{
+        return userDao.getAll()
+    }
     suspend fun addUser(userModel: UserModel): Long {
         return performInsertWithLongId(userModel, userDao)
     }
